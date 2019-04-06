@@ -5,10 +5,9 @@ import Deck from "./Deck"
 
 class DeckList extends Component {
     render() {
-        const { prefix } = this.props
         return (<View>
-        			<Text>{ prefix }DeckList</Text>
-                    <Deck prefix={`-${prefix}`}/>
+        			<Text>DeckList</Text>
+                    <Deck />
                </View>)
     }
 }

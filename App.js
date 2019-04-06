@@ -9,10 +9,14 @@ import { Button } from 'react-native-elements'
 
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import DeckDetail from './components/DeckDetail'
+import AddQuiz from './components/AddQuiz'
+import QuizAsk from './components/QuizAsk'
+import QuizAnswer from './components/QuizAnswer'
 
 const TabsNavigator = createBottomTabNavigator({
   DeckList: {
-    screen: () => <DeckList prefix="-" />,
+    screen: DeckList,
   },
   AddDeck: {
     screen: AddDeck,
@@ -26,8 +30,17 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: TabsNavigator
   },
-  DeckList: {
-    screen: () => <DeckList prefix="-" />,
+  DeckDetail: {
+    screen: DeckDetail,
+  },
+  AddQuiz: {
+    screen: AddQuiz
+  },
+  QuizAsk: {
+    screen: QuizAsk
+  },
+  QuizAnswer: {
+    screen: QuizAnswer
   }
 })
 

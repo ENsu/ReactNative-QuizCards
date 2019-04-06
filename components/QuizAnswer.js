@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
 class QuizAnswer extends Component {
     render() {
-        const { prefix } = this.props
-        return (<Text>
-        			{ prefix }QuizAnswer
-               </Text>)
+        return (<View>
+	        		<Text>
+	        			Quiz Question
+	        		</Text>
+	        		<Text>
+	        			QuizAnswer
+	               </Text>
+               </View>)
     }
 }
+
 function mapStateToProps ({}, {}) {
     return { 
     }

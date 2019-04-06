@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 
 class AddQuiz extends Component {
     render() {
-        const { prefix } = this.props
         return (<Text>
-        			{ prefix }AddQuiz
+        			AddQuiz
                </Text>)
     }
 }

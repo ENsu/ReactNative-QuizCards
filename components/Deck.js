@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 import { connect } from 'react-redux'
+import { withNavigation } from 'react-navigation';
 
 class Deck extends Component {
     render() {
-        const { prefix } = this.props
-        return (<Text>
-        			{ prefix }Deck
-               </Text>)
+        return (<TouchableOpacity onPress={() => this.props.navigation.navigate("DeckDetail")}>
+	        		<Text>
+	        			Deck
+	               </Text>
+               </TouchableOpacity>)
     }
 }
+
 function mapStateToProps ({}, {}) {
     return { 
     }
 }
-export default connect(mapStateToProps)(Deck)
+
+export default connect(mapStateToProps)(withNavigation(Deck))
 

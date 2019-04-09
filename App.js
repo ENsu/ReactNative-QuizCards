@@ -5,7 +5,8 @@ import { createAppContainer, createBottomTabNavigator, createStackNavigator } fr
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
-import { Button } from 'react-native-elements'
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
@@ -14,13 +15,36 @@ import AddQuiz from './components/AddQuiz'
 import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
 
+
 const TabsNavigator = createBottomTabNavigator({
   Decks: {
     screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: <Text style={{ fontSize: 15 }}> Decks </Text>,
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
+    }
   },
   AddNew: {
     screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: <Text style={{ fontSize: 15 }}> Add New </Text>,
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
+    }
   }, 
+}, {tabBarOptions: {
+    activeTintColor: "black",
+    style: {
+      height: 64,
+      backgroundColor: "white",
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 8
+      },
+      shadowRadius: 8,
+      shadowOpacity: 1,
+    }
+  }
 })
 
 // Ref. https://reactnavigation.org/docs/en/navigation-options-resolution.html#a-stack-contains-a-tab-navigator-and-you-want-to-set-the-title-on-the-stack-header
@@ -50,17 +74,23 @@ const MainNavigator = createStackNavigator({
   },
   QuizAnswer: {
     screen: QuizAnswer
-  }
+  },
 })
 
 const AppContainer = createAppContainer(MainNavigator);
 
+const theme = {
+  ...DefaultTheme,
+  roundness: 20,
+};
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
+        <PaperProvider theme={theme}>
           <AppContainer />
+        </PaperProvider>
       </Provider>
     );
   }

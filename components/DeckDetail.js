@@ -9,9 +9,6 @@ class DeckDetail extends Component {
 
     render() {
         return (<View>
-	        		<Text>
-	        			DeckDetail: 
-	               </Text>
 	               <Text>
 	               		DeckName - CardNumber
 	               </Text>

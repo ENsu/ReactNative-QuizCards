@@ -3,6 +3,10 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 
 class DeckDetail extends Component {
+	static navigationOptions = {
+		title: 'Deck Info',
+	}
+
     render() {
         return (<View>
 	        		<Text>
@@ -14,7 +18,7 @@ class DeckDetail extends Component {
 	               <TouchableOpacity onPress={() => this.props.navigation.navigate("AddQuiz")}>
 	               		<Text>AddQuiz</Text>
 	               </TouchableOpacity>
-	               <TouchableOpacity onPress={() => this.props.navigation.navigate("QuizAsk")}>
+	               <TouchableOpacity onPress={() => this.props.navigation.navigate("QuizQuestion")}>
 	               		<Text>Start Quiz</Text>
 	               </TouchableOpacity>
 	               	<Text>Delete</Text>

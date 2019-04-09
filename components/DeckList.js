@@ -11,6 +11,7 @@ class DeckList extends Component {
                </View>)
     }
 }
+
 function mapStateToProps ({}, {}) {
     return { 
     }

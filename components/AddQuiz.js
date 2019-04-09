@@ -3,6 +3,10 @@ import { Text } from 'react-native'
 import { connect } from 'react-redux'
 
 class AddQuiz extends Component {
+	static navigationOptions = {
+		title: 'Add Quiz',
+	}
+
     render() {
         return (<Text>
         			AddQuiz

@@ -11,20 +11,29 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import AddQuiz from './components/AddQuiz'
-import QuizAsk from './components/QuizAsk'
+import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
 
 const TabsNavigator = createBottomTabNavigator({
-  DeckList: {
+  Decks: {
     screen: DeckList,
   },
-  AddDeck: {
+  AddNew: {
     screen: AddDeck,
-  },
+  }, 
 })
 
-// const TabsContainer = createAppContainer(TabsNavigator)
+// Ref. https://reactnavigation.org/docs/en/navigation-options-resolution.html#a-stack-contains-a-tab-navigator-and-you-want-to-set-the-title-on-the-stack-header
+TabsNavigator.navigationOptions = ({ navigation }) => {
+  const { routeName } = navigation.state.routes[navigation.state.index];
 
+  // You can do whatever you like here to pick the title based on the route name
+  const headerTitle = routeName;
+
+  return {
+    title: headerTitle,
+  };
+};
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -36,8 +45,8 @@ const MainNavigator = createStackNavigator({
   AddQuiz: {
     screen: AddQuiz
   },
-  QuizAsk: {
-    screen: QuizAsk
+  QuizQuestion: {
+    screen: QuizQuestion
   },
   QuizAnswer: {
     screen: QuizAnswer
@@ -56,12 +65,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

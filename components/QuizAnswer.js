@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
+import { Headline, Button } from 'react-native-paper'
+
 
 class QuizAnswer extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -10,14 +12,16 @@ class QuizAnswer extends Component {
     }
 
     render() {
-        return (<View>
-	        		<Text>
-	        			Quiz Question
-	        		</Text>
-	        		<Text>
-	        			QuizAnswer
-	               </Text>
-               </View>)
+        return (<View style={{flex: 1, justifyContent: 'center', alignItems: "center"}}>
+                    <Headline>Quiz Qustion Text</Headline>
+                    <Headline>Your Answer Result</Headline>
+                    <Button 
+                        mode="contained" 
+                        style={{margin: 8}}
+                        onPress={() => this.props.navigation.navigate("QuizQuestion")}>
+                        Next Question
+                    </Button>
+                </View>)
     }
 }
 

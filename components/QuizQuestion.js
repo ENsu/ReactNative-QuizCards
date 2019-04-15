@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View  } from 'react-native'
+import { View  } from 'react-native'
 import { connect } from 'react-redux'
+import { Headline, TextInput, Button } from 'react-native-paper'
+
 
 class QuizQuestion extends Component {
 
@@ -10,12 +12,25 @@ class QuizQuestion extends Component {
         }
     }
 
+    state = {
+        text: ""
+    }
+
     render() {
-        return (<View>
-        			<Text>Quiz Qustion</Text>
-	        		<TouchableOpacity onPress={() => this.props.navigation.navigate("QuizAnswer")}>
-		            	<Text>Answer</Text>
-		            </TouchableOpacity>
+        return (<View style={{flex: 1, justifyContent: 'center'}}>
+        			<Headline style={{ alignSelf: "center" }}>Quiz Qustion Text</Headline>
+                    <TextInput
+                        label="Your Answer"
+                        value={this.state.text}
+                        style={{margin: 8}}
+                        onChangeText={text => this.setState({ text:text })}
+                    />
+                    <Button 
+                        mode="contained" 
+                        style={{margin: 8}}
+                        onPress={() => this.props.navigation.navigate("QuizAnswer")}>
+                        Submit
+                    </Button>
 	            </View>
                )
     }

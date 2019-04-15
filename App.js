@@ -81,7 +81,6 @@ const AppContainer = createAppContainer(MainNavigator);
 
 const theme = {
   ...DefaultTheme,
-  roundness: 20,
 };
 
 export default class App extends React.Component {

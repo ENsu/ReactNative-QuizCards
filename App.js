@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import { createAppContainer, createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 
 import { Provider } from 'react-redux'
@@ -15,6 +15,7 @@ import AddQuiz from './components/AddQuiz'
 import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
 
+// import { createNewDeck, getDeck, getAllDecks, deleteDeck, addQuestion, answerQuestion } from './utils/api'
 
 const TabsNavigator = createBottomTabNavigator({
   Decks: {
@@ -85,6 +86,22 @@ const theme = {
 
 export default class App extends React.Component {
   render() {
+
+    /*
+    createNewDeck("Deck1")
+    addQuestion ("Deck1", {Question:"question_text", Answer:"answer_text"})
+    setTimeout(() => {
+      addQuestion ("Deck1", {Question:"question_text2", Answer:"answer_text2"})
+    }, 2000)
+    setTimeout(() => {
+      answerQuestion("Deck1", 1)
+    }, 4000)
+    setTimeout(() => {
+      getAllDecks().then((res)=>console.log(res))
+      getDeck("Deck1").then((res)=>console.log(res))
+    }, 6000)
+    */
+
     return (
       <Provider store={createStore(reducer)}>
         <PaperProvider theme={theme}>

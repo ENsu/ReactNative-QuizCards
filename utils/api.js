@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 
 /*
 deckInfo = {
-  questions: [questionId:{content:"", answer:""}, questionId:{content:"", answer:""}, ...]
+  questions: [{Q:"", A:""}, {Q:"", A:""}, ...]
   ansHist: [1, 0, 1, ...]
   deckName: ""
 }
@@ -19,7 +19,7 @@ export function createNewDeck (deckName) {
     ansHist:[],
     deckName: deckName
   }
-  AsyncStorage.setItem(deckName, JSON.stringify(dummyDeck))
+  return AsyncStorage.setItem(deckName, JSON.stringify(dummyDeck))
 }
 
 export function getDeck(deckName) {
@@ -31,7 +31,7 @@ export function deleteDeck(deckName) {
 }
 
 export function addQuestion (deckName, Question) {
-  getDeck(deckName).then((res) => {
+  return getDeck(deckName).then((res) => {
     let deckInfo = JSON.parse(res)
     deckInfo['questions'].push(Question)
     AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
@@ -39,7 +39,7 @@ export function addQuestion (deckName, Question) {
 }
 
 export function answerQuestion (deckName, correct) {
-  getDeck(deckName).then((res) => {
+  return getDeck(deckName).then((res) => {
     let deckInfo = JSON.parse(res)
     deckInfo['ansHist'].push(correct)
     AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))

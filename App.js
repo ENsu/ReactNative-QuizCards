@@ -15,7 +15,8 @@ import AddQuiz from './components/AddQuiz'
 import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
 
-// import { createNewDeck, getDeck, getAllDecks, deleteDeck, addQuestion, answerQuestion } from './utils/api'
+import { init } from './utils/init' 
+import { getAllDecks, getDeck } from './utils/api'
 
 const TabsNavigator = createBottomTabNavigator({
   Decks: {
@@ -85,22 +86,17 @@ const theme = {
 };
 
 export default class App extends React.Component {
-  render() {
+  componentDidMount () {
+    init().then(()=>{
+      getAllDecks().then((res) => {
+        res.forEach((deckName) => {
+          getDeck(deckName).then((data)=>console.log(data))
+        })
+      })
+    })
+  }
 
-    /*
-    createNewDeck("Deck1")
-    addQuestion ("Deck1", {Question:"question_text", Answer:"answer_text"})
-    setTimeout(() => {
-      addQuestion ("Deck1", {Question:"question_text2", Answer:"answer_text2"})
-    }, 2000)
-    setTimeout(() => {
-      answerQuestion("Deck1", 1)
-    }, 4000)
-    setTimeout(() => {
-      getAllDecks().then((res)=>console.log(res))
-      getDeck("Deck1").then((res)=>console.log(res))
-    }, 6000)
-    */
+  render() {
 
     return (
       <Provider store={createStore(reducer)}>

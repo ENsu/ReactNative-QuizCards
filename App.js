@@ -5,6 +5,7 @@ import { createAppContainer, createBottomTabNavigator, createStackNavigator } fr
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
+import middleware from './middlewares'
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
@@ -14,9 +15,6 @@ import DeckDetail from './components/DeckDetail'
 import AddQuiz from './components/AddQuiz'
 import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
-
-import { init } from './utils/init' 
-import { getAllDecks, getDeck } from './utils/api'
 
 const TabsNavigator = createBottomTabNavigator({
   Decks: {
@@ -86,20 +84,11 @@ const theme = {
 };
 
 export default class App extends React.Component {
-  componentDidMount () {
-    init().then(()=>{
-      getAllDecks().then((res) => {
-        res.forEach((deckName) => {
-          getDeck(deckName).then((data)=>console.log(data))
-        })
-      })
-    })
-  }
 
   render() {
 
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, middleware)}>
         <PaperProvider theme={theme}>
           <AppContainer />
         </PaperProvider>

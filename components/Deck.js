@@ -6,16 +6,18 @@ import { Card, Title, Paragraph } from 'react-native-paper';
 
 
 class Deck extends Component {
+
     render() {
-        return (<TouchableOpacity onPress={() => this.props.navigation.navigate("DeckDetail")}>
-	        		<Card style={styles.card}>
-	        			<Card.Title title="Deck Name" />
-	        			<Card.Content>
-	        				<Title># of Cards</Title>
-	        				<Paragraph>Last time accuracy or progress percentage</Paragraph>
-	        			</Card.Content>
-	               </Card>
-               </TouchableOpacity>)
+      const { deckInfo } = this.props
+
+      return (<TouchableOpacity onPress={() => this.props.navigation.navigate("DeckDetail")}>
+            <Card style={styles.card}>
+        			<Card.Title title={ deckInfo.deckName } />
+        			<Card.Content>
+        				<Title>Card Number: { deckInfo.questions.length }</Title>
+        			</Card.Content>
+               </Card>
+             </TouchableOpacity>)
     }
 }
 
@@ -32,9 +34,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps ({}, {}) {
-    return { 
-    }
+function mapStateToProps ({ decks }, { name }) {
+  return { 
+    deckInfo: decks[name]
+  }
 }
 
 export default connect(mapStateToProps)(withNavigation(Deck))

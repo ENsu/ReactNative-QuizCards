@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View} from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Headline, Title, Button } from 'react-native-paper'
 
@@ -10,9 +10,10 @@ class DeckDetail extends Component {
 	}
 
     render() {
+    	const { deckInfo } = this.props
         return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        			<Headline>Deck's Name</Headline>
-        			<Title># of cards</Title>
+        			<Headline>{ deckInfo.deckName}</Headline>
+        			<Title>Card Number: { deckInfo.questions.length }</Title>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz")}>
 						AddQuiz
 					</Button>
@@ -25,8 +26,11 @@ class DeckDetail extends Component {
      			</View>)
     }
 }
-function mapStateToProps ({}, {}) {
+function mapStateToProps ({ decks }, { navigation }) {
+
+	const { deckName } = navigation.state.params
     return { 
+    	deckInfo: decks[deckName]
     }
 }
 export default connect(mapStateToProps)(DeckDetail)

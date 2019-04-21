@@ -10,7 +10,11 @@ class Deck extends Component {
     render() {
       const { deckInfo } = this.props
 
-      return (<TouchableOpacity onPress={() => this.props.navigation.navigate("DeckDetail")}>
+      return (<TouchableOpacity onPress={() => { this.props.navigation.navigate("DeckDetail",
+          {
+            deckName: deckInfo.deckName 
+          }
+        )}}>
             <Card style={styles.card}>
         			<Card.Title title={ deckInfo.deckName } />
         			<Card.Content>

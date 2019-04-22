@@ -8,22 +8,6 @@ deckInfo = {
 }
 */
 
-export function createNewDeck (deckName) {
-  let dummyDeck = {
-    questions: [],
-    ansHist:[],
-    deckName: deckName
-  }
-  return AsyncStorage.setItem(deckName, JSON.stringify(dummyDeck))
-}
-
-export function addQuestion (deckName, Question) {
-  return getDeckInfo(deckName).then((res) => {
-    let deckInfo = JSON.parse(res)
-    deckInfo['questions'].push(Question)
-    AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
-  })
-}
 
 export function getAllDeckNames () {
   return AsyncStorage.getAllKeys()
@@ -35,16 +19,24 @@ export function getDeckInfo (deckName) {
   )
 }
 
-/* 
-export function getAllDeckInfo () {
-  getAllDeckNames().then(
-    new Promise.all(
-    res.map((deckName) => {
-        getDeckInfo(deckName)
-    })
-  )
+export function createNewDeck (deckName) {
+  let dummyDeck = {
+    questions: [],
+    ansHist:[],
+    deckName: deckName
+  }
+  return new Promise((res, rej) => 
+      AsyncStorage.setItem(deckName, JSON.stringify(dummyDeck))
+        .then(res({[deckName]: dummyDeck})))
 }
-*/
+
+export function addQuestion (deckName, Question) {
+  return getDeckInfo(deckName).then((res) => {
+    let deckInfo = res
+    deckInfo['questions'].push(Question)
+    AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
+  })
+}
 
 export function deleteDeck (deckName) {
   return AsyncStorage.removeItem(deckName)
@@ -52,7 +44,7 @@ export function deleteDeck (deckName) {
 
 export function answerQuestion (deckName, correct) {
   return getDeckInfo(deckName).then((res) => {
-    let deckInfo = JSON.parse(res)
+    let deckInfo = res
     deckInfo['ansHist'].push(correct)
     AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
   })

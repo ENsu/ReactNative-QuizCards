@@ -12,7 +12,7 @@ class DeckDetail extends Component {
     render() {
     	const { deckInfo } = this.props
         return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        			<Headline>{ deckInfo.deckName}</Headline>
+        			<Headline>{ deckInfo.deckName }</Headline>
         			<Title>Card Number: { deckInfo.questions.length }</Title>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz")}>
 						AddQuiz

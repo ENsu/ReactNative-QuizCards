@@ -11,7 +11,9 @@ import { handleGetDecks } from '../actions/decks'
 class DeckList extends Component {
 
     componentDidMount () {
-        this.props.dispatch(handleGetDecks())
+        init().then(() => 
+            this.props.dispatch(handleGetDecks())
+        )
     }
 
     render() {

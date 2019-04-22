@@ -1,4 +1,4 @@
-import { getAllDeckNames, getDeckInfo } from '../utils/api'
+import { getAllDeckNames, getDeckInfo, createNewDeck } from '../utils/api'
 
 export const arrayToObject = (array) =>
    array.reduce((o, item) => {
@@ -7,11 +7,19 @@ export const arrayToObject = (array) =>
    }, {})
 
 export const GET_DECKS = 'GET_DECKS'
+export const ADD_DECK = 'ADD_DECK'
 
 function getDecks (decks) {
     return {
         type: GET_DECKS,
         decks: decks
+    }
+}
+
+function addDeck (deckInfo) {
+    return {
+        type: ADD_DECK,
+        deckInfo: deckInfo
     }
 }
 
@@ -21,8 +29,17 @@ export function handleGetDecks (info) {
             .then((decks) => new Promise.all(
                 decks.map((deck) => getDeckInfo(deck))
             ))
-            .then((resList) => {
-                return dispatch(getDecks(arrayToObject(resList)))
-            })
+            .then((resList) => dispatch(getDecks(arrayToObject(resList))))
         }
     }
+
+export function handleAddDeck (deckName) {
+    return (dispatch) => {
+        return createNewDeck(deckName)
+            .then((deckInfo) => {
+                console.log("check point")
+                console.log(deckInfo)
+                dispatch(addDeck(deckInfo))
+            })
+    }
+}

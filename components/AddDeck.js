@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { TextInput, Title, Button } from 'react-native-paper';
+import { TextInput, Title, Button } from 'react-native-paper'
+
+import { handleAddDeck } from '../actions/decks'
 
 class AddDeck extends Component {
 	state = {
 		text: ""
 	}
+
+	addDeck = () => {
+		this.props.dispatch(handleAddDeck(this.state.text))
+		this.props.navigation.navigate("Decks")
+	}
+
     render() {
         return (
         	<View style={{flex: 1, justifyContent: 'center'}}>
@@ -19,7 +27,7 @@ class AddDeck extends Component {
 				<Button 
 					mode="contained" 
 					style={{margin: 8}}
-					onPress={() => console.log('Pressed')}>
+					onPress={this.addDeck}>
 					Confirm
 				</Button>
 	      	</View>

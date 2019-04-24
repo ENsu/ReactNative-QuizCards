@@ -1,4 +1,4 @@
-import { GET_DECKS, ADD_DECK } from '../actions/decks'
+import { GET_DECKS, ADD_DECK, ADD_QUESTION } from '../actions/decks'
 
 export default function decks (state={}, action) {
     switch(action.type) {
@@ -12,6 +12,14 @@ export default function decks (state={}, action) {
         		...state,
         		...action.deckInfo
         	}
+        case ADD_QUESTION:
+            return {
+                ...state, 
+                [action.deckName]: { 
+                    ...state[action.deckName], 
+                    questions: [...state[action.deckName].questions, action.questionInfo]
+                    }
+            }
         default:
             return state
     }

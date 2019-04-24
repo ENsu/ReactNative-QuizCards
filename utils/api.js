@@ -30,10 +30,10 @@ export function createNewDeck (deckName) {
         .then(res({[deckName]: dummyDeck})))
 }
 
-export function addQuestion (deckName, Question) {
+export function addQuestion (deckName, questionInfo) {
   return getDeckInfo(deckName).then((res) => {
     let deckInfo = res
-    deckInfo['questions'].push(Question)
+    deckInfo['questions'].push(questionInfo)
     AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
   })
 }

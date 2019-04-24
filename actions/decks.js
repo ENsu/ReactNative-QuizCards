@@ -1,4 +1,9 @@
-import { getAllDeckNames, getDeckInfo, createNewDeck } from '../utils/api'
+import { getAllDeckNames, getDeckInfo, createNewDeck, addQuestion } from '../utils/api'
+
+export const GET_DECKS = 'GET_DECKS'
+export const ADD_DECK = 'ADD_DECK'
+export const ADD_QUESTION = 'ADD_QUESTION'
+
 
 export const arrayToObject = (array) =>
    array.reduce((o, item) => {
@@ -6,8 +11,6 @@ export const arrayToObject = (array) =>
      return o
    }, {})
 
-export const GET_DECKS = 'GET_DECKS'
-export const ADD_DECK = 'ADD_DECK'
 
 function getDecks (decks) {
     return {
@@ -20,6 +23,14 @@ function addDeck (deckInfo) {
     return {
         type: ADD_DECK,
         deckInfo: deckInfo
+    }
+}
+
+function addQuestionAction (deckName, questionInfo) {
+    return {
+        type: ADD_QUESTION,
+        deckName: deckName,
+        questionInfo: questionInfo
     }
 }
 
@@ -37,9 +48,16 @@ export function handleAddDeck (deckName) {
     return (dispatch) => {
         return createNewDeck(deckName)
             .then((deckInfo) => {
-                console.log("check point")
-                console.log(deckInfo)
                 dispatch(addDeck(deckInfo))
+            })
+    }
+}
+
+export function handleAddQuestion (deckName, questionInfo) {
+    return (dispatch) => {
+        return addQuestion(deckName, questionInfo)
+            .then(() => {
+                dispatch(addQuestionAction(deckName, questionInfo))
             })
     }
 }

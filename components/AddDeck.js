@@ -28,7 +28,7 @@ class AddDeck extends Component {
 					mode="contained" 
 					style={{margin: 8}}
 					onPress={this.addDeck}>
-					Confirm
+					Add
 				</Button>
 	      	</View>
       )

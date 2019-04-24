@@ -14,8 +14,9 @@ class DeckDetail extends Component {
         return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         			<Headline>{ deckInfo.deckName }</Headline>
         			<Title>Card Number: { deckInfo.questions.length }</Title>
-					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz")}>
-						AddQuiz
+					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz", 
+						          						{ deckName: deckInfo.deckName }
+													)}> AddQuiz
 					</Button>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("QuizQuestion")}>
 							Start Quiz

@@ -16,22 +16,30 @@ import AddQuiz from './components/AddQuiz'
 import QuizQuestion from './components/QuizQuestion'
 import QuizAnswer from './components/QuizAnswer'
 
+
+const DeckListStack = createStackNavigator({
+  DeckList: DeckList,
+})
+
+DeckListStack.navigationOptions = {
+  tabBarLabel: <Text style={{ fontSize: 15 }}> Decks </Text>,
+  tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
+}
+
+const AddDeckStack = createStackNavigator({
+  AddDeck: AddDeck,
+});
+
+AddDeckStack.navigationOptions = {
+  tabBarLabel: <Text style={{ fontSize: 15 }}> Add New </Text>,
+  tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
+}
+
+
 const TabsNavigator = createBottomTabNavigator({
-  Decks: {
-    screen: DeckList,
-    navigationOptions: {
-      tabBarLabel: <Text style={{ fontSize: 15 }}> Decks </Text>,
-      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
-    }
-  },
-  AddNew: {
-    screen: AddDeck,
-    navigationOptions: {
-      tabBarLabel: <Text style={{ fontSize: 15 }}> Add New </Text>,
-      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
-    }
-  }, 
-}, {tabBarOptions: {
+  DeckListStack, 
+  AddDeckStack
+  }, {tabBarOptions: {
     activeTintColor: "black",
     style: {
       height: 64,
@@ -49,13 +57,9 @@ const TabsNavigator = createBottomTabNavigator({
 
 // Ref. https://reactnavigation.org/docs/en/navigation-options-resolution.html#a-stack-contains-a-tab-navigator-and-you-want-to-set-the-title-on-the-stack-header
 TabsNavigator.navigationOptions = ({ navigation }) => {
-  const { routeName } = navigation.state.routes[navigation.state.index];
-
-  // You can do whatever you like here to pick the title based on the route name
-  const headerTitle = routeName;
 
   return {
-    title: headerTitle,
+    header: null,
   };
 };
 

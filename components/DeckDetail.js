@@ -2,11 +2,24 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Headline, Title, Button } from 'react-native-paper'
-
+import { handleDeleteDeck } from '../actions/decks'
 
 class DeckDetail extends Component {
 	static navigationOptions = {
 		title: 'Deck Info',
+	}
+
+	handleDelete = () => {
+		const { deckName } = this.props.deckInfo
+		
+		new Promise((res) => res(this.props.dispatch(handleDeleteDeck(deckName))))
+			.then(() => 
+				this.props.navigation.push("Home")
+			)		
+	}
+
+	shouldComponentUpdate(nextProp) {
+		return nextProp.deckInfo !== undefined
 	}
 
     render() {
@@ -21,7 +34,7 @@ class DeckDetail extends Component {
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("QuizQuestion")}>
 							Start Quiz
 					</Button>
-					<Button style={{margin: 8}} onPress={() => console.log("Delete!")}>
+					<Button style={{margin: 8}} onPress={this.handleDelete}>
 							Delete
 					</Button>
      			</View>)

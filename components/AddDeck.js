@@ -6,13 +6,18 @@ import { TextInput, Title, Button } from 'react-native-paper'
 import { handleAddDeck } from '../actions/decks'
 
 class AddDeck extends Component {
+
+    static navigationOptions = {
+        title: 'Add Deck',
+    }
+
 	state = {
 		text: ""
 	}
 
 	addDeck = () => {
 		this.props.dispatch(handleAddDeck(this.state.text))
-		this.props.navigation.navigate("Decks")
+		this.props.navigation.navigate("DeckList")
 	}
 
     render() {

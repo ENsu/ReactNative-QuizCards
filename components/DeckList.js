@@ -4,16 +4,20 @@ import { connect } from 'react-redux'
 import Deck from "./Deck"
 import { withTheme } from 'react-native-paper';
 
-import { init } from '../utils/init' 
 import { handleGetDecks } from '../actions/decks'
+import { init } from '../utils/init' 
 
 
 class DeckList extends Component {
 
+    static navigationOptions = {
+        title: 'Deck List',
+    }
+
     componentDidMount () {
-        init().then(() => 
-            this.props.dispatch(handleGetDecks())
-        )
+        // init().then(() => 
+        this.props.dispatch(handleGetDecks())
+        // )
     }
 
     render() {
@@ -28,6 +32,7 @@ class DeckList extends Component {
 }
 
 function mapStateToProps ({ decks }, {}) {
+
     return { 
         deckNames: Object.keys(decks)
     }

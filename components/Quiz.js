@@ -69,7 +69,7 @@ class Quiz extends Component {
                         onPress={() => this.handleAnswer(userAnswer)}>
                         Answer
                     </Button></Fragment>)
-                    : (<Fragment><Headline style={{ alignSelf: "center" }}>{correct ? "Right!" : "Wrong!"}</Headline>
+                    : (<Fragment><Headline style={{ alignSelf: "center" }}>{correct ? "Correct!" : "Wrong!"}</Headline>
                     <Button 
                         mode="contained" 
                         style={{margin: 8}}

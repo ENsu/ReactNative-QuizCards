@@ -37,12 +37,15 @@ class DeckDetail extends Component {
 	}
 
     render() {
-    	const { deckInfo } = this.props
+    	const { deckName, questions, ansHist } = this.props.deckInfo
+    	const correct_cnt = ansHist.filter((a) => a === true).length
         return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        			<Headline>{ deckInfo.deckName }</Headline>
-        			<Title>Card Number: { deckInfo.questions.length }</Title>
+        			<Headline>{ deckName }</Headline>
+        			<Title>Card Number: { questions.length }</Title>
+        			<Title>Progress: { Math.floor(ansHist.length / questions.length * 100) }%</Title>
+        			<Title>Accuray: { Math.floor(correct_cnt / ansHist.length * 100) }%</Title>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz", 
-						          						{ deckName: deckInfo.deckName }
+						          						{ deckName: deckName }
 													)}> Add Quiz
 					</Button>
 					<Button mode="contained" style={{margin: 8}} onPress={this.handleDoQuiz}>

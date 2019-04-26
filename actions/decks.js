@@ -1,9 +1,11 @@
-import { getAllDeckNames, getDeckInfo, createNewDeck, addQuestion, deleteDeck } from '../utils/api'
+import { getAllDeckNames, getDeckInfo, createNewDeck, addQuestion, deleteDeck, answerQuestion, resetHist } from '../utils/api'
 
 export const GET_DECKS = 'GET_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const DELETE_DECK = 'DELETE_DECK'
+export const UPDATE_HIST = "UPDATE_HIST"
+export const RESET_ANS_HIST = "RESET_ANS_HIST"
 
 
 export const arrayToObject = (array) =>
@@ -76,6 +78,39 @@ export function handleAddQuestion (deckName, questionInfo) {
         return addQuestion(deckName, questionInfo)
             .then(() => {
                 dispatch(addQuestionAction(deckName, questionInfo))
+            })
+    }
+}
+
+function updateHistAction (deckName, correct) {
+    return {
+        type: UPDATE_HIST,
+        deckName: deckName,
+        correct: correct
+    }
+}
+
+export function handleUpdateHist (deckName, correct) {
+    return (dispatch) => {
+        return answerQuestion(deckName, correct)
+            .then(() => {
+                dispatch(updateHistAction(deckName, correct))
+            })
+    }
+}
+
+function resetHistAction (deckName) {
+    return {
+        type: RESET_ANS_HIST,
+        deckName: deckName
+    }
+}
+
+export function handleResetHist (deckName) {
+    return (dispatch) => {
+        return resetHist(deckName)
+            .then(() => {
+                dispatch(resetHistAction(deckName))
             })
     }
 }

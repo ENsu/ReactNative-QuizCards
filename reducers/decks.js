@@ -1,4 +1,4 @@
-import { GET_DECKS, ADD_DECK, ADD_QUESTION, DELETE_DECK } from '../actions/decks'
+import { GET_DECKS, ADD_DECK, ADD_QUESTION, DELETE_DECK, UPDATE_HIST, RESET_ANS_HIST } from '../actions/decks'
 
 export default function decks (state={}, action) {
     switch(action.type) {
@@ -23,6 +23,22 @@ export default function decks (state={}, action) {
         case DELETE_DECK:
             delete state[action.deckName]
             return state
+        case UPDATE_HIST:
+            return {
+                ...state,
+                [action.deckName]: {
+                    ...state[action.deckName],
+                    ansHist: [...state[action.deckName].ansHist, action.correct]
+                }
+            }
+        case RESET_ANS_HIST:
+            return {
+                ...state,
+                [action.deckName]: {
+                    ...state[action.deckName],
+                    ansHist: []
+                }    
+            }
         default:
             return state
     }

@@ -50,6 +50,13 @@ export function answerQuestion (deckName, correct) {
   })
 }
 
+export function resetHist (deckName) {
+  return getDeckInfo(deckName).then((res) => {
+    let deckInfo = res
+    deckInfo['ansHist'] = []
+    AsyncStorage.setItem(deckName, JSON.stringify(deckInfo))
+  })
+}
 
 
 

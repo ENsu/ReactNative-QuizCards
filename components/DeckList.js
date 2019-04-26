@@ -16,8 +16,8 @@ class DeckList extends Component {
 
     componentDidMount () {
         // init().then(() => 
-        this.props.dispatch(handleGetDecks())
-        // )
+            this.props.dispatch(handleGetDecks())
+        //)
     }
 
     render() {

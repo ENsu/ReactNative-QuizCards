@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Headline, Title, Button } from 'react-native-paper'
-import { handleDeleteDeck } from '../actions/decks'
+import { handleDeleteDeck, handleResetHist } from '../actions/decks'
 
 class DeckDetail extends Component {
 	static navigationOptions = {
@@ -18,6 +18,20 @@ class DeckDetail extends Component {
 			)		
 	}
 
+	handleDoQuiz = () => {
+		const { questions, ansHist, deckName } = this.props.deckInfo
+		if (questions.length === ansHist.length) {
+			// need first reset the history
+			new Promise((res) => res(this.props.dispatch(handleResetHist(deckName))))
+				.then(() => this.props.navigation.push("Quiz",
+			{ deckName: deckName }) )
+		} else {
+			this.props.navigation.push("Quiz",
+				{ deckName: deckName }
+			)
+		}
+	}
+
 	shouldComponentUpdate(nextProp) {
 		return nextProp.deckInfo !== undefined
 	}
@@ -29,9 +43,9 @@ class DeckDetail extends Component {
         			<Title>Card Number: { deckInfo.questions.length }</Title>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz", 
 						          						{ deckName: deckInfo.deckName }
-													)}> AddQuiz
+													)}> Add Quiz
 					</Button>
-					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("QuizQuestion")}>
+					<Button mode="contained" style={{margin: 8}} onPress={this.handleDoQuiz}>
 							Start Quiz
 					</Button>
 					<Button style={{margin: 8}} onPress={this.handleDelete}>

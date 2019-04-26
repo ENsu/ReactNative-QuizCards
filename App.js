@@ -13,8 +13,7 @@ import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import AddQuiz from './components/AddQuiz'
-import QuizQuestion from './components/QuizQuestion'
-import QuizAnswer from './components/QuizAnswer'
+import Quiz from './components/Quiz'
 
 
 const DeckListStack = createStackNavigator({
@@ -73,12 +72,9 @@ const MainNavigator = createStackNavigator({
   AddQuiz: {
     screen: AddQuiz
   },
-  QuizQuestion: {
-    screen: QuizQuestion
-  },
-  QuizAnswer: {
-    screen: QuizAnswer
-  },
+  Quiz: {
+    screen: Quiz
+  }
 })
 
 const AppContainer = createAppContainer(MainNavigator);

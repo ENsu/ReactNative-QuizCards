@@ -8,10 +8,10 @@ export default function decks (state={}, action) {
                 ...action.decks
             }
         case ADD_DECK:
-        	return {
-        		...state,
-        		...action.deckInfo
-        	}
+            return {
+                ...state,
+                ...action.deckInfo
+            }
         case ADD_QUESTION:
             return {
                 ...state, 

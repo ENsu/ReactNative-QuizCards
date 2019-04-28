@@ -36,17 +36,14 @@ class DeckDetail extends Component {
 		return nextProp.deckInfo !== undefined
 	}
 
-    render() {
-    	const { deckName, questions, ansHist } = this.props.deckInfo
-    	const correct_cnt = ansHist.filter((a) => a === true).length
-        return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        			<Headline>{ deckName }</Headline>
-        			<Title>Card Number: { questions.length }</Title>
-        			<Title>Progress: { Math.floor(ansHist.length / questions.length * 100) }%</Title>
-        			<Title>Accuray: { Math.floor(correct_cnt / ansHist.length * 100) }%</Title>
+	render() {
+		const { deckName, questions } = this.props.deckInfo
+		return (<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+					<Headline>{ deckName }</Headline>
+					<Title>Card Number: { questions.length }</Title>
 					<Button mode="contained" style={{margin: 8}} onPress={() => this.props.navigation.navigate("AddQuiz", 
-						          						{ deckName: deckName }
-													)}> Add Quiz
+														{ deckName: deckName }
+													)}> Add Card
 					</Button>
 					<Button mode="contained" style={{margin: 8}} onPress={this.handleDoQuiz}>
 							Start Quiz
@@ -54,14 +51,14 @@ class DeckDetail extends Component {
 					<Button style={{margin: 8}} onPress={this.handleDelete}>
 							Delete
 					</Button>
-     			</View>)
+				</View>)
     }
 }
 function mapStateToProps ({ decks }, { navigation }) {
 
 	const { deckName } = navigation.state.params
     return { 
-    	deckInfo: decks[deckName]
+		deckInfo: decks[deckName]
     }
 }
 export default connect(mapStateToProps)(DeckDetail)

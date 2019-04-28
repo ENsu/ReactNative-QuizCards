@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from "./Deck"
-import { withTheme } from 'react-native-paper';
-
+import { withTheme } from 'react-native-paper'
 import { handleGetDecks } from '../actions/decks'
 import { init } from '../utils/init' 
 

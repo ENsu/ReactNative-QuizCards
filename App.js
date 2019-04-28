@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
+import { Text } from 'react-native'
 import { createAppContainer, createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 
 import { Provider } from 'react-redux'
@@ -14,6 +14,7 @@ import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import AddQuiz from './components/AddQuiz'
 import Quiz from './components/Quiz'
+import Score from './components/Score'
 
 
 const DeckListStack = createStackNavigator({
@@ -33,7 +34,6 @@ AddDeckStack.navigationOptions = {
   tabBarLabel: <Text style={{ fontSize: 15 }}> Add New </Text>,
   tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
 }
-
 
 const TabsNavigator = createBottomTabNavigator({
   DeckListStack, 
@@ -55,7 +55,7 @@ const TabsNavigator = createBottomTabNavigator({
 })
 
 // Ref. https://reactnavigation.org/docs/en/navigation-options-resolution.html#a-stack-contains-a-tab-navigator-and-you-want-to-set-the-title-on-the-stack-header
-TabsNavigator.navigationOptions = ({ navigation }) => {
+TabsNavigator.navigationOptions = () => {
 
   return {
     header: null,
@@ -74,6 +74,9 @@ const MainNavigator = createStackNavigator({
   },
   Quiz: {
     screen: Quiz
+  },
+  Score: {
+    screen: Score
   }
 })
 

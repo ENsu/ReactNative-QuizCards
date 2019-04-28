@@ -22,7 +22,7 @@ function getDecks (decks) {
     }
 }
 
-export function handleGetDecks (info) {
+export function handleGetDecks () {
     return (dispatch) => {
         return getAllDeckNames()
             .then((decks) => new Promise.all(

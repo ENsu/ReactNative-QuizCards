@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { TextInput, Title, Button } from 'react-native-paper'
+import { TextInput, Button } from 'react-native-paper'
 
 import { handleAddDeck } from '../actions/decks'
 
@@ -39,7 +39,7 @@ class AddDeck extends Component {
       )
     }
 }
-function mapStateToProps ({}, {}) {
+function mapStateToProps () {
     return { 
     }
 }

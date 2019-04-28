@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { TextInput, Button } from 'react-native-paper';
 import { handleAddQuestion } from '../actions/decks'
 
-
-
 class AddQuiz extends Component {
 	static navigationOptions = {
 		title: 'Add Quiz',
@@ -13,12 +11,18 @@ class AddQuiz extends Component {
 
     state = {
         question_text:"",
+        option1_text:"",
+        option2_text:"",
+        option3_text:"",
         answer_text:"",
     }
 
     addQuestion = () => {
         const { deckName } = this.props
-        const questionInfo = {Q: this.state.question_text, A:this.state.answer_text}
+        const { question_text, option1_text, option2_text, option3_text, answer_text } = this.state
+        const questionInfo = {Q: question_text, 
+                              O: [option1_text, option2_text, option3_text], 
+                              A: answer_text}
 
         this.props.dispatch(handleAddQuestion(deckName, questionInfo))
         this.props.navigation.navigate("DeckDetail")
@@ -31,6 +35,24 @@ class AddQuiz extends Component {
                         value={this.state.question_text}
                         style={{margin: 16}}
                         onChangeText={text => this.setState({ question_text:text })}
+                    />
+                    <TextInput
+                        label="Option1"
+                        value={this.state.option1_text}
+                        style={{margin: 16}}
+                        onChangeText={text => this.setState({ option1_text:text })}
+                    />
+                    <TextInput
+                        label="Option2"
+                        value={this.state.option2_text}
+                        style={{margin: 16}}
+                        onChangeText={text => this.setState({ option2_text:text })}
+                    />
+                    <TextInput
+                        label="Option3"
+                        value={this.state.option3_text}
+                        style={{margin: 16}}
+                        onChangeText={text => this.setState({ option3_text:text })}
                     />
                     <TextInput
                         label="Answer"

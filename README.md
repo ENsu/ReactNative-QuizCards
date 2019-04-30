@@ -23,3 +23,7 @@ Runs the app in the development mode.<br>
   • Press e to send a link to your phone with email.
   
   • Press s to sign in and enable more options.
+  
+  
+## Testing
+### Android emulator, iOS emulator and real iOS device are tested.

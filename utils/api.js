@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native'
+import { NOTIFICATION_KEY } from './notification'
 
 /*
 deckInfo = {
@@ -11,6 +12,7 @@ deckInfo = {
 
 export function getAllDeckNames () {
   return AsyncStorage.getAllKeys()
+    .then((deckNames) => deckNames.filter((deckName) => deckName !== NOTIFICATION_KEY))
 }
 
 export function getDeckInfo (deckName) {
@@ -25,7 +27,7 @@ export function createNewDeck (deckName) {
     ansHist:[],
     deckName: deckName
   }
-  return new Promise((res, rej) => 
+  return new Promise((res) => 
       AsyncStorage.setItem(deckName, JSON.stringify(dummyDeck))
         .then(res({[deckName]: dummyDeck})))
 }

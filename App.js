@@ -24,7 +24,7 @@ const DeckListStack = createStackNavigator({
 })
 
 DeckListStack.navigationOptions = {
-  tabBarLabel: <Text style={{ fontSize: 15 }}> Decks </Text>,
+  tabBarLabel: <Text style={{ fontSize: 15, alignSelf: "center" }}> Decks </Text>,
   tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color={tintColor} />
 }
 
@@ -33,36 +33,31 @@ const AddDeckStack = createStackNavigator({
 });
 
 AddDeckStack.navigationOptions = {
-  tabBarLabel: <Text style={{ fontSize: 15 }}> Add New </Text>,
+  tabBarLabel: <Text style={{ fontSize: 15, alignSelf: "center" }}> Add New </Text>,
   tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
 }
 
 const TabsNavigator = createBottomTabNavigator({
-  DeckListStack, 
-  AddDeckStack
-  }, {tabBarOptions: {
-    activeTintColor: "black",
-    style: {
-      height: 64,
-      backgroundColor: "white",
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 8
-      },
-      shadowRadius: 8,
-      shadowOpacity: 1,
-    }
-  }
-})
+    DeckListStack, 
+    AddDeckStack
+  }, { tabBarOptions: {
+  activeTintColor: "black",
+  style: {
+    height: 64,
+    backgroundColor: "white",
+    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowOffset: {
+      width: 0,
+      height: 8
+    },
+    shadowRadius: 8,
+    shadowOpacity: 1,
+  },
+}})
 
-// Ref. https://reactnavigation.org/docs/en/navigation-options-resolution.html#a-stack-contains-a-tab-navigator-and-you-want-to-set-the-title-on-the-stack-header
-TabsNavigator.navigationOptions = () => {
-
-  return {
-    header: null,
-  };
-};
+TabsNavigator.navigationOptions = {
+  header: null,
+}
 
 const MainNavigator = createStackNavigator({
   Home: {

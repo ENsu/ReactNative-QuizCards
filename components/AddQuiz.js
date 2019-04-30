@@ -30,7 +30,7 @@ class AddQuiz extends Component {
 
     render() {
         return (<View style={{flex: 1, justifyContent: 'center'}}>
-        			<TextInput
+                    <TextInput
                         label="Question"
                         value={this.state.question_text}
                         style={{margin: 16}}
@@ -69,7 +69,7 @@ class AddQuiz extends Component {
                </View>)
     }
 }
-function mapStateToProps ({ navigation }) {
+function mapStateToProps (_, { navigation }) {
     const { deckName } = navigation.state.params
 
     return { 

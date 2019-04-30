@@ -22,20 +22,20 @@ class AddDeck extends Component {
 
     render() {
         return (
-        	<View style={{flex: 1, justifyContent: 'center'}}>
-	        	<TextInput
-	        		label="Input your Deck Name"
-			        value={this.state.text}
-			        style={{margin: 8}}
-			        onChangeText={text => this.setState({ text })}
-	      		/>
-				<Button 
-					mode="contained" 
-					style={{margin: 8}}
-					onPress={this.addDeck}>
-					Add
-				</Button>
-	      	</View>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+                <TextInput
+                    label="Input your Deck Name"
+                    value={this.state.text}
+                    style={{margin: 8}}
+                    onChangeText={text => this.setState({ text })}
+                />
+                <Button 
+                    mode="contained" 
+                    style={{margin: 8}}
+                    onPress={this.addDeck}>
+                    Add
+                </Button>
+            </View>
       )
     }
 }

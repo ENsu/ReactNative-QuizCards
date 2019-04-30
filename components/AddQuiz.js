@@ -69,7 +69,7 @@ class AddQuiz extends Component {
                </View>)
     }
 }
-function mapStateToProps ({}, { navigation }) {
+function mapStateToProps ({ navigation }) {
     const { deckName } = navigation.state.params
 
     return { 

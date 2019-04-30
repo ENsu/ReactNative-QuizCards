@@ -8,6 +8,8 @@ import reducer from './reducers'
 import middleware from './middlewares'
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { setLocalNotification, clearLocalNotification } from './utils/notification'
+
 
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
@@ -87,6 +89,11 @@ const theme = {
 };
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    clearLocalNotification()
+        .then(setLocalNotification)
+  }
 
   render() {
 

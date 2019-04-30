@@ -3,6 +3,7 @@ import { View  } from 'react-native'
 import { connect } from 'react-redux'
 import { Headline, Button, Title } from 'react-native-paper'
 import { handleUpdateHist } from '../actions/decks'
+import { clearLocalNotification, setLocalNotification } from '../utils/notification'
 
 
 class Quiz extends Component {
@@ -28,6 +29,10 @@ class Quiz extends Component {
             mode: "answer",
             correct: correct
         }))
+
+        // notification for tomorrow, if no quiz done tomorrow
+        clearLocalNotification()
+            .then(setLocalNotification)
     }
 
     handleNext = () => {
